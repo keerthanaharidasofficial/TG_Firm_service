@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include 'base.html' %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Base Data Display</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+* {
+    margin:0;
+    padding:0;
+    text-align:center;
+    align-items:center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
+}
+.main-table {
+    width:100%;
+    float:left;
+    padding:0 50px;
+}
+table,td,th{
+    position:relative;
+    padding:2% 1% 1% 0;
+    border:solid;
+
+}
+button{
+      padding:5px 20px 5px 23px;
+    color: #fff;
+    background-color: #30302e;
+    border-color: #30302e;
+}
+button:hover {
+    color: #fff;
+    background-color: #797979;
+    border-color: #797979;
+}
+
+.delete-confirmation {
+    width: 100%;
+    float: left;
+}
+#pop-up {
+    width: 50%;
+    display: none;
+    background-color: #fff;
+    position: fixed;
+    top: 10%;
+    left: 25%;
+    padding: 20px;
+    border: 2px solid #30302e ;
+  
+}
+</style>
+</head>
+<body>
+{% block content %}
+<div class="main-banner">
+    <div class="container">
+        <div>
+            <h1>Entry Data Display</h1>
+        </div>
+        <div class="main-table">
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th> Customer Name</th>
+                    <th>Load_Plan</th>
+                    <th>Destination</th>
+                    <th>Value</th>
+                    <th>Weight</th>
+                    <th>Commodity</th>
+                    <th>VAT_claim Required</th>
+                </tr>
+                <tr>
+                    {% for i in object_list %}
+                    <td> {{ i.id }} </td>
+                    <td> {{ i.customer }} </td>
+                    <td > {{ i.load_plan }}</td>
+                    <td > {{ i.destination }}</td>
+                    <td > {{ i.value }}</td>
+                    <td > {{ i.wt }}</td>
+                    <td > {{ i.commodity }}</td>
+                    <td > {{ i.VAT_claim }}</td>
+                    <td><a href="http://127.0.0.1:8000/tariff-value/{{i.id}}"><button type="submit">Tariff</button></a></td>
+                    <td><a href="http://127.0.0.1:8000/update-entry-form/{{i.id}}" target="_blank"><button type="submit">Update</button></a></td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td><a href="http://127.0.0.1:8000/tariff-sheet"><button type="submit">Tariff Datasheet</button></a></td>
+                    <td><button type="button" onclick="delete_popup()">Clear Sheet</button></td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+    <div class="delete-confirmation">
+        <div class="pop-up" id="pop-up">
+            <h1>Are You Sure You Want to Delete the Entire Data</h1>
+                <a href=""><button type="button" onclick="delete_popup()" name="button">No</button> </a>
+                <a href="http://127.0.0.1:8000/clear-entry-sheet"><button type="submit" name="button">Yes</button></a>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function delete_popup() {
+        if (document.getElementById('pop-up').style.display == 'none'){
+            document.getElementById('pop-up').style.display = 'block';
+            document.getElementById('pop-up').style.transitionDelay = '10s';
+        }
+        else {
+            document.getElementById('pop-up').style.display = 'none';
+        }
+        
+    }
+</script>
+{% endblock%}
+
+
+</body>
+</html>

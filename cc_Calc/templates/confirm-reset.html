@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include 'base.html' %}
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmation-reset</title>
+</head>
+<body>
+<div>
+    <form method="post">{% csrf_token %}
+    <h1>Are you sure you want to delete the entire data ? </h1>
+        <a href="http://127.0.0.1:8000/entry-sheet"><button type="button" name="button">No</button> </a>
+        <button type="submit" name="button">Yes</button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <style>
+        body {
+    background-color:black;
+    color: #666666;
+    font-size: 14px;
+    line-height: 1.80857;
+    font-weight: normal;
+    overflow-x: hidden;
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    float: left;
+    background-image: url({% static 'images/base-bg2.jpg' %});
+    height: auto;
+    background-size: 100% 500%;
+    background-repeat: no-repeat;
+}
+ul,
+li,
+ol {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.header-top {
+    width: 100%;
+    float: left;
+    background-color: #2b2a29;
+    clip-path: circle(60%);
+    height: auto;
+    padding: 50px 0px;
+}
+.header-menubar {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+.header-menubar ul {
+    display: inline-block;
+}
+.header-menubar li {
+    float:left;
+    font-size: 18px;
+    padding: 6px 10px 0px 30px;
+
+}
+.header-menubar li a {
+    color: #f1f1f1;
+}
+.header-menubar li a:hover {
+    color:#f26522;
+}
+
+    </style>
+</head>
+<body>
+<header>
+
+</header>
+<main>
+
+    <div class="main-banner">
+        <div class="header-top">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="header-menubar">
+                        <ul>
+                            <li><a href="http://127.0.0.1:8000/home-page">Home</a></li>
+<!--                            <li><a href="http://127.0.0.1:8000/data-entry-form">TG-Accounts</a></li>-->
+                            <li><a href="http://127.0.0.1:8000/emp_index">TG-Staff</a></li>
+                            <li><a href="http://127.0.0.1:8000/TG-staff-logout">Logout</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% block content %}
+    {% endblock %}
+
+</main>
+<footer>
+
+</footer>
+</body>
+</html>

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transguard Tariff Data Calculation-Updation</title>
+    <!-- Bootstrap CSS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+<!--        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">-->
+    <!-- font awesome -->
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--  -->
+<!--       <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Poppins:400,700&display=swap&subset=latin-ext" rel="stylesheet">-->
+<!--     <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">-->
+    <style>
+
+* {
+    box-sizing: border-box !important;
+    transition: ease all 0.5s;
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+body {
+    background-color:black;
+    color: #666666;
+    font-size: 14px;
+    line-height: 1.80857;
+    font-weight: normal;
+    overflow-x: hidden;
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    float: left;
+    height: 100%;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+ul,
+li,
+ol {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+
+a {
+    color: #1f1f1f;
+    text-decoration: none !important;
+    outline: none !important;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+        .main-banner {
+    width: 100%;
+    float: left;
+    background-image: url({% static 'images/index-bg.jpg' %});
+    border-bottom-style:hidden;
+    height: 50%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    padding-bottom:350px;
+}
+.header-top {
+    width: 100%;
+    float: left;
+    background-color: #2b2a29;
+    clip-path: circle(60%);
+    height: auto;
+    padding: 50px 0px;
+}
+.header-menubar {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+.header-menubar ul {
+    display: inline-block;
+}
+.header-menubar li {
+    float:left;
+    font-size: 18px;
+    padding: 6px 10px 0px 30px;
+
+}
+.header-menubar li a {
+    color: #f1f1f1;
+}
+.header-menubar li a:hover {
+    color:#f26522;
+}
+
+.tg-logo-section {
+    width: 100%;
+    float:left
+}
+.logo {
+    clip-path:circle(40%);
+    width:13%;
+    float:left;
+    padding: 0px 20px;
+}
+.logo img {
+    padding: 20px 10px 20px 10px;
+    opacity: 0.3;
+}
+.search-bar {
+    margin: 10px 200px;
+}
+.input-group .form-control {
+    padding:10px 20px 10px 23px;
+    border-color: #30302e;
+}
+.input-group button {
+    padding:10px 20px 10px 23px;
+    color: #fff;
+    background-color: #30302e;
+    border-color: #30302e;
+}
+.input-group button:hover {
+    color: #fff;
+    background-color: #797979;
+    border-color: #797979;
+}
+
+.news_bg {
+    padding-top:150px;
+    width: 100%;
+    float: left;
+    padding-bottom: 200px;
+    background-image:  url({% static 'images/news-bg.jpg' %});
+    height: auto;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    clip-path: polygon(0 0, 100% 0, 97% 93%, 1% 100%);
+
+}
+
+.news_bg h1 {
+    width: 50%;
+    font-size: 60px;
+    color: #000000;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.news_bg p  {
+    width: 170px;
+    margin: 0 auto;
+    padding-top: 30px;
+}
+
+.news_bg p {
+    width: 50%;
+    float: left;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #252525;
+    text-align: center;
+    padding: 10px 0px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+#my_slider a.carousel-control-next {
+    right: 0px;
+    top: 40px;
+}
+
+#my_slider a.carousel-control-prev {
+    left: 0px;
+    top: 30px;
+}
+
+#my_slider .carousel-control-next,
+#my_slider .carousel-control-prev {
+    width: 45px;
+    height: 45px;
+    background: rgb(242, 222, 172, 0.80);
+    opacity: 1;
+    font-size: 20px;
+    color: #000;
+    border-radius: 100px;
+}
+
+#my_slider .carousel-control-next:focus,
+#my_slider .carousel-control-next:hover,
+#my_slider .carousel-control-prev:focus,
+#my_slider .carousel-control-prev:hover {
+    color: #fff;
+}
+
+.footer {
+    width: 100%;
+    float: left;
+    height: auto;
+}
+.footer-logo-section {
+    width:100%;
+    text-align:center;
+    padding-top:60px;
+    padding-bottom:60px;
+}
+.footer-logo-section img {
+    width:10%;
+    opacity:0.6;
+}
+.footer-mail{
+    width:100%;
+    text-align:center;
+    border-bottom: 1px solid #ffffff !important;
+    padding-bottom:30px;
+}
+.footer-mail input {
+    width: 50%;
+    height:auto;
+    font-size: 14px;
+    color: #000;
+}
+.footer_menu {
+    width:100%;
+    text-align:center;
+    margin: 0 auto;
+    padding-top:30px;
+}
+.footer_menu ul {
+    margin: 0px;
+    padding: 0px;
+    display: inline-block;
+}
+
+.footer_menu li {
+    float: left;
+    font-size: 16px;
+    color: #f1f1f1;
+    padding: 20px 10px 0px 10px;
+}
+
+
+.footer_menu li a {
+    color: #f1f1f1;
+}
+
+.footer_menu li a:hover {
+    color: #f26522;
+}
+
+
+.location_main {
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 30px;
+    padding-bottom:30px;
+    text-align: center;
+}
+
+.location_main {
+    float: left;
+    font-size: 16px;
+    color: #ffffff;
+}
+
+.location_main a {
+    color: #ffffff;
+}
+
+.location_main a:hover {
+    color: #f26522;
+}
+
+    </style>
+</head>
+
+<body>
+<div class="main-banner">
+    <div class="header-top">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="header-menubar">
+                    <ul>
+                        <li><a href="http://127.0.0.1:8000/TG-staff-login">TG-Accounts</a></li>
+                        <li><a href="http://127.0.0.1:8000/TG-staff-login">TG-Staff</a></li>
+                        <li><a href="#news_bg">News</a></li>
+                        <li><a href="http://127.0.0.1:8000/TG-staff-login">LogIn</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tg-logo-section">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="logo">
+                    <a href=""><img src="{% static 'images/tg-logo.jpeg' %}"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="search-bar">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="input-group">
+                    <input type="search" class="form-control" placeholder="Search here">
+                    <div class="input-group-append">
+                        <button type="button" class="btn"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--   banner bg  end   -->
+<!--   TG New section begin     -->
+
+<div class="news_bg" id="news_bg">
+    <div class="container">
+        <div id="my_slider" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h1>News</h1>
+                            <p>Recent news and updates from TG Group.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h1>News</h1>
+                            <p>Recent news and updates from TG Group.</p>
+                        </div>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#my_slider" role="button" data-bs-slide="prev">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                <a class="carousel-control-next" href="#my_slider" role="button" data-bs-slide="next">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--   news section ends -->
+<!-- footer begins       -->
+<div class="footer">
+    <div class="container">
+        <div class="logo footer-logo-section">
+            <img src="{% static 'images/tg-logo.jpeg' %}">
+        </div>
+        <div class="footer-mail">
+            <input type="email" placeholder="enter your maild id">
+        </div>
+        <div class="footer_menu">
+         <ul>
+            <li><a href="#">Best Services</a></li>
+            <li><a href="#">Staff Status</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Customer Service</a></li>
+         </ul>
+      </div>
+      <div class="location_main">Help Line  Number : <a href="#">+1 1800 1200 1200</a></div>
+    </div>
+</div>
+
+
+</body>
+
+</html>

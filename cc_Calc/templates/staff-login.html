@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--{% load static %}-->
+<head>
+    <meta charset="UTF-8">
+    <title>Staff Login</title>
+<!--   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">-->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <style>
+
+* {
+     box-sizing: border-box !important;
+    transition: ease all 0.5s;
+    margin:0;
+    padding:0;
+    text-align:center;
+    align-items:center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+body {
+    background-color:black;
+    color: black;
+    font-size: 17px;
+    line-height: 1.0;
+    font-weight: normal;
+    overflow-x: hidden;
+    width: 100%;
+    float: left;
+    background-image: url('/static/images/index-bg.jpg');
+    height: auto;
+    background-size: 100% 200%;
+    background-repeat: no-repeat;
+}
+    table{
+    position:relative;
+    left:30%;
+}
+    td,tr {
+    position:relative;
+    left:20%;
+    padding:30px 0;
+}
+    h1{
+    margin:3% 0;
+}
+    form input {
+    margin:15px;
+}
+    form input {
+    padding:10px 0 10px 0;
+}
+    button {
+    margin-top:20px;
+     padding:10px;
+     color: #fff;
+    background-color: #30302e;
+    border-color: #30302e;
+}
+
+  </style>
+</head>
+<body>
+{% block content %}
+<div class="main-cont">
+    <div class="container">
+        <h1>Login Form</h1>
+        <div class="login-form-cont">
+
+                <form method="post" enctype="multipart/form-data">{% csrf_token %}
+                    <table>
+                    {{ form.as_table }}
+                        </table>
+                    <button type="submit">SUBMIT</button>
+                </form>
+
+
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+</body>
+</html>
